@@ -1,35 +1,26 @@
 const express = require("express");
 const router = express.Router();
-const posts = require("../data/posts_arr.js")
+// importo l'array dei post
+const posts = require("../data/posts_arr.js");
+// importo i metodi da postsController
+const postsController = require("../controllers/postsController.js");
 
 // index
-router.get("/", (req, res) => {
-  res.json(posts);
-})
+router.get("/", postsController.index);
 
 // show
-router.get("/:id", (req, res) => {
-  !posts[req.params.id - 1] ? res.send("Post non trovato") : res.json(posts[req.params.id - 1]);
-})
+router.get("/:id", postsController.show);
 
 // store
-router.post("/", (req, res) => {
-  res.send("Aggiungi un nuovo post");
-})
+router.post("/", postsController.store);
 
 // update
-router.put("/:id", (req, res) => {
-  res.send(`Modifica totale del post ${req.params.id}`);
-})
+router.put("/:id", postsController.update);
 
 // modify
-router.patch("/:id", (req, res) => {
-  res.send(`Modifica parziale del post ${req.params.id}`);
-})
+router.patch("/:id", postsController.modify);
 
 // delete
-router.delete("/:id", (req, res) => {
-  res.send(`Elimina il post ${req.params.id}`);
-})
+router.delete("/:id", postsController.destroy);
 
 module.exports = router;

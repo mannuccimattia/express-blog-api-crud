@@ -29,4 +29,5 @@ function modify (req, res) {
 function destroy (req, res) {
   res.send(`Elimina il post ${req.params.id}`);
 }
+
 module.exports = { index, show, store, update, modify, destroy }
