@@ -1,3 +1,4 @@
+// importo l'array dei post
 const posts = require("../data/posts_arr.js");
 
 // INDEX
@@ -16,7 +17,7 @@ function index(req, res) {
   // cerco tutti i post con il tag formattato
   let filteredPosts = posts.filter(post => post.tags.includes(tag));
 
-  // se non ce ne sono restituisco 404 e un json di errore
+  // se non ce ne sono restituisco un 404 con un json di errore
   if (filteredPosts.length === 0) {
     res.status(404);
 
@@ -38,7 +39,7 @@ function show(req, res) {
   // cerco il post con l'id richiesto
   const post = posts.find(post => post.id == id);
 
-  // se non trovo nessun post restituisco 404 e un json di errore
+  // se non trovo nessun post restituisco un 404 con un json di errore
   if (!post) {
     res.status(404);
 
@@ -74,7 +75,7 @@ function destroy(req, res) {
   // cerco il posts con id richiesto
   const post = posts.find(post => post.id === id);
 
-  // se non trovo nessun post restituisco 404 e un json di errore
+  // se non trovo nessun post restituisco un 404 con un json di errore
   if (!post) {
     res.status(404);
 
@@ -92,4 +93,5 @@ function destroy(req, res) {
   console.log(`********************************\n`, posts)
 }
 
+// esporto un oggetto contentente le funzioni 
 module.exports = { index, show, store, update, modify, destroy }

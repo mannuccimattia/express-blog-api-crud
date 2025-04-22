@@ -1,8 +1,12 @@
+// importo express
 const express = require("express");
+// inizailizzo la classe router 
 const router = express.Router();
+
 // importo l'array dei post
 const posts = require("../data/posts_arr.js");
-// importo i metodi da postsController
+
+// importo le funzioni da postsController
 const postsController = require("../controllers/postsController.js");
 
 // index
@@ -23,4 +27,5 @@ router.patch("/:id", postsController.modify);
 // delete
 router.delete("/:id", postsController.destroy);
 
+// esporto router
 module.exports = router;
