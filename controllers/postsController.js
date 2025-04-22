@@ -2,7 +2,32 @@ const posts = require("../data/posts_arr.js");
 
 // INDEX
 function index (req, res) {
-  res.json(posts);
+// definisco una variabile per il tag di ricerca
+const unformattedTag = req.query.tags;
+
+// se non inserisco nessuna tag restituisco tutto l'array
+if(!unformattedTag){
+  return res.json(posts)
+}
+
+// se esiste il tag lo formatto 
+const tag = unformattedTag.substring(0, 1).toUpperCase() + unformattedTag.substring(1).toLowerCase();
+
+// cerco tutti i post con il tag formattato
+let filteredPosts = posts.filter(post => post.tags.includes(tag));
+
+// se non ce ne sono restituisco 404 e un json di errore
+if(filteredPosts.length === 0){
+  res.status(404);
+
+  return res.json({
+    error: "Not Found",
+    message: "Post not found"
+  });
+}
+
+// altrimenti restituisco i post filtrati
+return res.json(filteredPosts);
 }
 
 // SHOW
