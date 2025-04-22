@@ -70,12 +70,26 @@ function modify(req, res) {
 function destroy(req, res) {
   // definisco id
   const id = parseInt(req.params.id);
+
   // cerco il posts con id richiesto
   const post = posts.find(post => post.id === id);
+
+  // se non trovo nessun post restituisco 404 e un json di errore
+  if (!post) {
+    res.status(404);
+
+    return res.json({
+      error: "Not Found",
+      message: "Post not found"
+    });
+  }
+
   // elimino l'elemento trovato
   posts.splice(posts.indexOf(post), 1);
-  console.log(posts);
+
+  // imposto lo stato della risposta
   res.sendStatus(204);
+  console.log(`********************************\n`, posts)
 }
 
 module.exports = { index, show, store, update, modify, destroy }
