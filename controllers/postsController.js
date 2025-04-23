@@ -55,8 +55,26 @@ function show(req, res) {
 
 // STORE
 function store(req, res) {
-  // res.send("Aggiungi un nuovo post");
-  res.json(req.body)
+  // definisco l'id del nuovo elemento e gli assegno il valore dell'ultimo id + 1
+  const newId = posts[posts.length - 1].id + 1;
+  // destructuring di req.body
+  const { title, content, image, tags } = req.body
+
+  // creo l'oggetto da aggiungere
+  const newPost = {
+    id: newId,
+    title,
+    content,
+    image,
+    tags
+  }
+
+  // pusho il nuovo oggetto nell'array dei post
+  posts.push(newPost);
+
+  // restituisco status 201 e l'oggetto aggiunto
+  res.status(201);
+  res.json(newPost);
 }
 
 // UPDATE
