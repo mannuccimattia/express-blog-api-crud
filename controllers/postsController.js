@@ -111,7 +111,41 @@ function update(req, res) {
 
 // MODIFY
 function modify(req, res) {
-  res.send(`Modifica parziale del post ${req.params.id}`);
+    // definisco l'id richiesto
+    const id = parseInt(req.params.id);
+  
+    // cerco l'oggetto con id richiesto
+    const post = posts.find(post => post.id === id) ;
+  
+    // se non trovo nessun post restituisco 404 e json di errore
+    if(!post){
+      res.status(404);
+      
+      return res.json({
+        error: "Not Found",
+        message: "Post not found"
+      });
+    }
+  
+    // destructuring di req.body
+    const { title, content, image, tags } = req.body;
+  
+    // assegno i valori contenuti in req.body alle proprietà del post trovato solo se sono stati richiesti
+    if(title){
+      post.title = title;
+    }
+    if(content){
+      post.content = content;
+    }
+    if(image){
+      post.image = image;
+    }
+    if(tags){
+      post.tags = tags;
+    }
+    
+    // restituisco l'oggetto modificato
+    res.json(post);
 }
 
 // DESTROY
