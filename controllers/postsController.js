@@ -17,14 +17,15 @@ function index(req, res) {
   // cerco tutti i post con il tag formattato
   let filteredPosts = posts.filter(post => post.tags.includes(tag));
 
-  // se non ce ne sono restituisco un 404 con un json di errore
+  // se non ce ne sono restituisco un messaggio di errore
   if (filteredPosts.length === 0) {
-    res.status(404);
+    // res.status(404);
 
-    return res.json({
-      error: "Not Found",
-      message: "Post not found"
-    });
+    // return res.json({
+    //   error: "Not Found",
+    //   message: "Post not found"
+    // });
+    res.send(`Post con tag "${tag}" non trovato/i`)
   }
 
   // restituisco i post filtrati
