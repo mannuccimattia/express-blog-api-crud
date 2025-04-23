@@ -55,7 +55,8 @@ function show(req, res) {
 
 // STORE
 function store(req, res) {
-  res.send("Aggiungi un nuovo post");
+  // res.send("Aggiungi un nuovo post");
+  res.json(req.body)
 }
 
 // UPDATE

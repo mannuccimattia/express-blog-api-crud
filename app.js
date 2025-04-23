@@ -5,6 +5,9 @@ const app = express();
 // definisco il numero di porta
 const port = 3000;
 
+// utilizzo il parser
+app.use(express.json());
+
 // importo il router
 const postsRouter = require("./routers/posts.js");
 
