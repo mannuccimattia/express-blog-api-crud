@@ -7,6 +7,8 @@ const port = 3000;
 
 // importo il middleware notFound
 const notFound = require("./middlewares/notFound.js");
+// importo il middleware errorsHandler
+const errorsHandler = require("./middlewares/errorsHandler.js");
 
 // utilizzo il parser
 app.use(express.json());
@@ -24,6 +26,7 @@ app.get("/", (req, res) => {
 
 // utilizzo i middlewares
 app.use(notFound);
+app.use(errorsHandler);
 
 // lascio il server in ascolto 
 app.listen(port, () => {
