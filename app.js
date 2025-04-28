@@ -5,6 +5,9 @@ const app = express();
 // definisco il numero di porta
 const port = 3000;
 
+// importo il middleware notFound
+const notFound = require("./middlewares/notFound.js");
+
 // utilizzo il parser
 app.use(express.json());
 
@@ -18,6 +21,9 @@ app.use("/posts", postsRouter);
 app.get("/", (req, res) => {
   res.send("Entry point");
 })
+
+// utilizzo i middlewares
+app.use(notFound);
 
 // lascio il server in ascolto 
 app.listen(port, () => {
