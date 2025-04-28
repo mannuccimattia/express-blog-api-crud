@@ -3,9 +3,6 @@ const posts = require("../data/posts_arr.js");
 
 // INDEX
 function index(req, res) {
-  // prova errorsHandler
-  pippo++;
-
   // definisco una variabile per il tag di ricerca
   const unformattedTag = req.query.tags;
 
